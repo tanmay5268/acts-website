@@ -1,5 +1,7 @@
 import { useState } from "react";
 import GlassSurface from "../ui/GlassSurface";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -71,20 +73,31 @@ export default function Navbar() {
           </div>
 
           {/* MOBILE MENU */}
-          {open && (
-            <div className="mt-5 flex flex-col gap-4 text-white md:hidden">
-              {NAV_LINKS.map(link => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm font-medium tracking-wide text-white/85 hover:text-white transition"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          )}
+          <AnimatePresence>
+  {open && (
+    <motion.div
+      initial={{ height: 0, opacity: 0, y: -6 }}
+      animate={{ height: "auto", opacity: 1, y: 0 }}
+      exit={{ height: 0, opacity: 0, y: -6 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="md:hidden overflow-hidden"
+    >
+      <div className="mt-4 flex flex-col gap-4 text-white text-sm px-1">
+        {NAV_LINKS.map(link => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => setOpen(false)}
+            className="opacity-80 hover:opacity-100 transition"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
         </div>
       </GlassSurface>
     </nav>
