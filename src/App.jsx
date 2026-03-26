@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/Hero";
+import About from "./components/sections/About";
 import Background from "./components/backgrounds/Background";
 import CursorBirds from "./components/reveal/CursorBirds";
 
@@ -24,6 +25,9 @@ export default function App() {
       {revealDone && (
         <CursorBirds />
       )}
+
+      {/* About */}
+      <About />
 
     </div>
   );
