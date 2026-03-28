@@ -13,6 +13,7 @@ export default function About() {
 
   return (
     <section
+      id ="about"
       ref={ref}
       className="relative py-32 px-6 w-full"
     >

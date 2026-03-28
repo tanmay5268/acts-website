@@ -17,7 +17,7 @@ export default function Hero({ setRevealDone }) {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section id="home" className="relative min-h-screen overflow-hidden">
 
       {/* Bird Reveal */}
       <BirdFlockReveal revealDone={localRevealDone} />

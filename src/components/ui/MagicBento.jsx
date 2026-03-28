@@ -1,26 +1,30 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import actsTeamImg from './acts_team.png';
+import CountUp from './CountUp'; // <-- Imported your new component
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
-const DEFAULT_GLOW_COLOR = '23, 155, 196';
+const DEFAULT_GLOW_COLOR = '132, 0, 255';
 const MOBILE_BREAKPOINT = 768;
 
 const cardData = [
   {
     color: '#0f111a',
-    title: '50+',
+    number: 50,       // <-- Changed to pure number
+    suffix: '+',      // <-- Added suffix
     description: 'Projects',
   },
   {
     color: '#0f111a',
-    title: '8+',
+    number: 8,        // <-- Changed to pure number
+    suffix: '+',      // <-- Added suffix
     description: 'Events',
   },
   {
     color: '#0f111a',
-    title: '400+',
+    number: 400,      // <-- Changed to pure number
+    suffix: '+',      // <-- Added suffix
     description: 'Members',
   },
   {
@@ -658,7 +662,25 @@ const MagicBento = ({
                       {index === 1 && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>}
                       {index === 2 && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>}
                     </div>
-                    <h3 className="text-3xl font-bold m-0">{card.title}</h3>
+                    {/* The count up logic checks if a 'number' property exists */}
+                    <h3 className="text-3xl font-bold m-0 flex items-center justify-center">
+                      {card.number !== undefined ? (
+                        <>
+                          <CountUp
+                            from={0}
+                            to={card.number}
+                            separator=","
+                            direction="up"
+                            duration={1.5}
+                            className="count-up-text"
+                            startWhen={true}
+                          />
+                          {card.suffix}
+                        </>
+                      ) : (
+                        card.title
+                      )}
+                    </h3>
                     <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">{card.description}</p>
                   </div>
                 )}
