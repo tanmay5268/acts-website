@@ -4,6 +4,8 @@ import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
 import Highlights from "./components/sections/Highlights";
 import Mentors from "./components/sections/Mentors";
+import Leadership from "./components/sections/Leadership";
+
 import Background from "./components/backgrounds/Background";
 import CursorBirds from "./components/reveal/CursorBirds";
 
@@ -24,7 +26,8 @@ export default function App() {
 
       <div id="about"><About /></div>
       <div id="highlights"><Highlights /></div>
-      <div id="team"><Mentors /></div>
+      <div><Mentors /></div>
+      <div id="team"><Leadership /></div>
 
     </div>
   );
